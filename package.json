@@ -1,0 +1,126 @@
+{
+  "name": "antigravity-autopilot",
+  "displayName": "Antigravity Autopilot",
+  "description": "Auto-accept agent steps in Antigravity IDE — no CDP required. Uses OS-level accessibility to click Run/Accept/Continue buttons invisibly.",
+  "version": "1.0.0",
+  "publisher": "timteh",
+  "author": {
+    "name": "Tim Melnik",
+    "url": "https://github.com/timteh"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timteh/antigravity-autopilot"
+  },
+  "bugs": {
+    "url": "https://github.com/timteh/antigravity-autopilot/issues"
+  },
+  "homepage": "https://github.com/timteh/antigravity-autopilot#readme",
+  "sponsor": {
+    "url": "https://buymeacoffee.com/timteh"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "keywords": [
+    "antigravity",
+    "auto-accept",
+    "autopilot",
+    "agent",
+    "automation",
+    "cursor",
+    "windsurf",
+    "ai-coding",
+    "yolo-mode"
+  ],
+  "activationEvents": ["*"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravity-autopilot.start",
+        "title": "Antigravity Autopilot: Start"
+      },
+      {
+        "command": "antigravity-autopilot.stop",
+        "title": "Antigravity Autopilot: Stop"
+      },
+      {
+        "command": "antigravity-autopilot.toggle",
+        "title": "Antigravity Autopilot: Toggle"
+      },
+      {
+        "command": "antigravity-autopilot.status",
+        "title": "Antigravity Autopilot: Show Status"
+      }
+    ],
+    "configuration": {
+      "title": "Antigravity Autopilot",
+      "properties": {
+        "antigravityAutopilot.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable Autopilot"
+        },
+        "antigravityAutopilot.pollIntervalMs": {
+          "type": "number",
+          "default": 800,
+          "description": "How often (ms) to scan for buttons"
+        },
+        "antigravityAutopilot.cooldownSeconds": {
+          "type": "number",
+          "default": 10,
+          "description": "Seconds to wait before re-clicking the same button"
+        },
+        "antigravityAutopilot.scrollCooldownSeconds": {
+          "type": "number",
+          "default": 3,
+          "description": "Seconds between auto-scroll clicks"
+        },
+        "antigravityAutopilot.autoScroll": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically click 'Scroll to bottom' to follow chat"
+        },
+        "antigravityAutopilot.acceptPatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            "^Run",
+            "^Accept",
+            "^Accept All$",
+            "^Allow$",
+            "^Allow this conversation$",
+            "^Continue$",
+            "^Keep All$",
+            "^Yes$"
+          ],
+          "description": "Regex patterns for buttons to auto-click"
+        },
+        "antigravityAutopilot.rejectPatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            "^Reject",
+            "^Cancel$",
+            "^Deny",
+            "^Delete",
+            "^Remove",
+            "^Discard",
+            "^Close",
+            "^Minimize$",
+            "^Maximize$",
+            "^Always run",
+            "^Always allow",
+            "^Ask every",
+            "^Review Changes$"
+          ],
+          "description": "Regex patterns for buttons to NEVER click"
+        }
+      }
+    }
+  }
+}
