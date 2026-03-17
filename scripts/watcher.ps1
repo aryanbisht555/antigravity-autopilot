@@ -28,6 +28,9 @@ if ($env:AUTOPILOT_ACCEPT_PATTERNS) {
         "^Run",
         "^Accept",
         "^Accept All$",
+        "^Send all",
+        "^Always Allow",
+        "^Always run",
         "^Allow$",
         "^Allow this conversation$",
         "^Continue$",
@@ -63,8 +66,6 @@ if ($env:AUTOPILOT_REJECT_PATTERNS) {
         "^Quick Open$",
         "^More Actions",
         "^Record voice",
-        "^Always run",
-        "^Always allow",
         "^Ask every",
         "^Review Changes$",
         "^Thought for"

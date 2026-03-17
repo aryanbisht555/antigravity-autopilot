@@ -93,6 +93,8 @@
             "^Accept",
             "^Accept All$",
             "^Send all",
+            "^Always Allow",
+            "^Always run",
             "^Allow$",
             "^Allow this conversation$",
             "^Continue$",
@@ -114,8 +116,6 @@
             "^Close",
             "^Minimize$",
             "^Maximize$",
-            "^Always run",
-            "^Always allow",
             "^Ask every",
             "^Review Changes$"
           ],
