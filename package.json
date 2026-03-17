@@ -1,6 +1,6 @@
 {
-  "name": "antigravity-autopilot",
-  "displayName": "Antigravity Autopilot",
+  "name": "antigravity-autopilot-os",
+  "displayName": "Antigravity Autopilot — OS Level",
   "description": "Auto-accept agent steps in Antigravity IDE — no CDP required. Uses OS-level accessibility to click Run/Accept/Continue buttons invisibly.",
   "version": "1.0.0",
   "publisher": "timteh",
