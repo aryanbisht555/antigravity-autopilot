@@ -35,7 +35,8 @@ if ($env:AUTOPILOT_ACCEPT_PATTERNS) {
         "^Allow this conversation$",
         "^Continue$",
         "^Keep All$",
-        "^Yes$"
+        "^Yes$",
+        "^Retry$"
     )
 }
 
@@ -227,7 +228,7 @@ function Invoke-AcceptButton($buttonInfo) {
 # ====== Main Loop ======
 Write-Host ""
 Write-Host "========================================="
-Write-Host "  Antigravity Autopilot v1.0.0"
+Write-Host "  Antigravity Autopilot v1.1.0"
 Write-Host "  github.com/timteh/antigravity-autopilot"
 Write-Host "  Interval: ${IntervalMs}ms"
 Write-Host "  Cooldown: ${CooldownSeconds}s"

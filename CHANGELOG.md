@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.0] — 2026-03-18
+
+### Added
+- `^Retry$` pattern to default accept list — auto-clicks "Retry" when an agent task fails
+
 ## [1.0.0] — 2026-03-17
 
 ### Added
